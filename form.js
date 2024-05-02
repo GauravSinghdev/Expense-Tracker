@@ -2,6 +2,7 @@ const expenseForm = document.getElementById("expenseForm");
 
 const expenseList = document.getElementById("expenseList");
 
+let t_amount = 0;
 
 expenseForm.addEventListener('submit', (e) =>{
     e.preventDefault(); //to prevent reload
@@ -10,7 +11,7 @@ expenseForm.addEventListener('submit', (e) =>{
 
     const category = document.getElementById("category").value;
 
-    const amount = document.getElementById("amount").value;
+    const amount = parseInt(document.getElementById("amount").value);
 
     if(description && category && !isNaN(amount))
     {
@@ -22,6 +23,9 @@ expenseForm.addEventListener('submit', (e) =>{
 
         expenseList.appendChild(newRow);
 
+        t_amount += amount;
+
+        document.getElementById("t_exp").innerHTML = `The total expense till now is ${t_amount}.`;
 
         document.getElementById("description").value = "";
         document.getElementById("category").value = "";
@@ -31,4 +35,5 @@ expenseForm.addEventListener('submit', (e) =>{
     else{
         alert("Please fill form properly");
     }
+
 })
