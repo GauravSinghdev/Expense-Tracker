@@ -2,10 +2,16 @@ const expenseForm = document.getElementById("expenseForm");
 
 const expenseList = document.getElementById("expenseList");
 
+const name1 = document.querySelector(".name");
+
 let t_amount = 0;
 
 expenseForm.addEventListener('submit', (e) =>{
+    
     e.preventDefault(); //to prevent reload
+
+
+    initial = true;
 
     const description = document.getElementById("description").value;
 
@@ -37,3 +43,23 @@ expenseForm.addEventListener('submit', (e) =>{
     }
 
 })
+
+
+function nameSet()
+{
+    const n = document.querySelector(".nametxt").value;
+    localStorage.setItem("name", n);
+    location.reload();
+}
+
+
+
+window.addEventListener("load", () => {
+    const value = localStorage.getItem("name");
+    if(value!=null){
+        name1.innerHTML = `Hi ${value}!`;
+        name1.id = "newName";
+    }
+})
+
+
